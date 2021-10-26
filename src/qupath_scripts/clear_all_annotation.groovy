@@ -1,0 +1,2 @@
+
+removeObjects(getAnnotationObjects(), true)

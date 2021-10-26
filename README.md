@@ -4,3 +4,4 @@
 -  Viualization Utils
 -  Slide file I/O utils
 -  Basic CNN workflow?
+-  Toy dataset?

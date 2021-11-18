@@ -1,0 +1,26 @@
+ def project = getProject()
+def myslides = []
+for (entry in project.getImageList()) {
+//    print entry.getImageName()
+    myslides.add(entry.getImageName().toString())
+}
+
+
+
+out_fp = buildFilePath(PROJECT_BASE_DIR, 'slide_list.txt')
+//out_fp = "slide_list.txt"
+//new File(out_fp).write(str(myslides))
+def outputLines = myslides
+
+def writer = new File(out_fp).newWriter()
+outputLines.forEach {line ->
+    writer.writeLine line
+}
+writer.flush()
+writer.close()
+//File lstFile = new File(out_fp)
+//lstFile.withWriter{ out ->
+//  myslides.add {out.println it}
+//}
+
+myslides[0]

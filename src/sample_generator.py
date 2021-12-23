@@ -20,7 +20,7 @@ def gen_csv(root="../tile_masks", verbose=0):
         npy = "/npy"
         tiles = "/tiles"
         for tile in os.listdir(root + '/' + case + tiles):
-            tile_name = tile.removesuffix('.png')
+            tile_name = tile.split(".")[0]
             x = np.load(
                 root +
                 "/" +

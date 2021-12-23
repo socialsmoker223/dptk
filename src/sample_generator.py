@@ -4,6 +4,8 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 
+import argparse
+
 
 def gen_csv(root="../tile_masks", verbose=0):
     df = pd.DataFrame(
@@ -70,11 +72,25 @@ def gen_png(df, root="../tile_masks", sample_size=100,
     df_sample.to_csv(out_dir + "/" + out_dir + ".csv", index=False)
 
 
-def main():
-    # df = gen_csv(root = "../tile_masks")
-    df = pd.read_csv("tile_mask.csv")
-    gen_png(df=df, sample_size=100)
+def main(tiles_dir, N):
+    csv = gen_csv(root = tiles_dir)
+    df = pd.read_csv(csv)
+    gen_png(df=df, sample_size=N)
 
 
 if __name__ == "__main__":
-    main()
+
+    # sample_gen -N 100 tiles_dir
+
+    parser = argparse.ArgumentParser(description='Process tiles dir')
+    parser.add_argument('tiles_dir', metavar="tiles_dir", type=str,
+                        help='an integer for the accumulator')
+    parser.add_argument('--N', metavar="N", type=int, required=False, default=100,
+                        help='number of tiles per class')
+
+    args = parser.parse_args()
+    tiles_dir =  args.tiles_dir
+    N = args.N
+    print(tiles_dir, N)
+
+    main(tiles_dir, N)
